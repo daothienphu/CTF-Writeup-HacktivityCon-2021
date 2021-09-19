@@ -1,3 +1,3 @@
-ZmxhZ3swN2NmZGMxNjkzNWJjZGQ5M2YxNGE3MGYxY2IxOTk1MX0=
+from base64 import b64decode
 
-https://patorjk.com/software/taag/#p=display&f=Standard&t=ZmxhZ3swN2NmZGMxNjkzNWJjZGQ5M2YxNGE3MGYxY2IxOTk1MX0%3D%0A
+print(b64decode("ZmxhZ3swN2NmZGMxNjkzNWJjZGQ5M2YxNGE3MGYxY2IxOTk1MX0=").decode())
