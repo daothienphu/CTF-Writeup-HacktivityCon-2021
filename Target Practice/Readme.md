@@ -22,7 +22,7 @@ flag{385e3ae5d7b2ca2510be8ef4}
 
 ## Detailed solution
 The gif (/ɡif/ not /jif/) contains MaxiCode images. To split the gif into several pngs I used imagemagick:
-````
+```
 $ convert target_practice.gif %02d.png
 ```
 I then manually ran each of them through https://zxing.org/w/decode.jspx , the sixteenth image contains the flag: 
