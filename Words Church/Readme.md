@@ -11,7 +11,7 @@ Tired of finding bugs and exploiting vulnerabilities? Want a classic brain buste
 - None
 
 ## Summary
-It's a normal game, still frustrated cuz of the poor backend tho.
+It's 150 rounds of word searches.
 
 ## Flag
 ```
