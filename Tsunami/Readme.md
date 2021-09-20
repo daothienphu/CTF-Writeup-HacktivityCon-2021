@@ -1,4 +1,4 @@
-# CTF Name: Challenge name
+# H@cktivityCon: Tsunami
  
 ![warmup category](https://img.shields.io/badge/Category-Warmups-brightgreen.svg)  
 ![score](https://img.shields.io/badge/Score_after_CTF-50-blue.svg)  
