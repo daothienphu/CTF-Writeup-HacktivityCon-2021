@@ -1,6 +1,6 @@
 # H@cktivityCon: OTP Smasher
  
-![warmup category](https://img.shields.io/badge/Category-Warmups-brightgreen.svg)  
+![warmup category](https://img.shields.io/badge/Category-Scripting-brightgreen.svg)  
 ![score](https://img.shields.io/badge/Score_after_CTF-283-blue.svg)  
 ![solves](https://img.shields.io/badge/Solves-141-lightgrey.svg) 
 
