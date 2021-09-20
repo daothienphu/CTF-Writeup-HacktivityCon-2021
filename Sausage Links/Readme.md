@@ -93,7 +93,7 @@ k = pow(c1, d, n)
 K = pow(g, k, a)
 m = c2 * pow(K, -1, a) % a
 ```
-Since this code required continued_fraction and Integer, which are parts of sageMath, I used https://sagecell.sagemath.org/ to run the python code below to find m.
+Since this code required ```continued_fraction``` and ```Integer```, which are parts of sageMath, I used Sage Cell Server (https://sagecell.sagemath.org/) to run the python code below to find m.
 ```
 from sage.all import continued_fraction, Integer    
 
@@ -125,7 +125,7 @@ c1, c2 = c
 d = wiener(e,n)
 k = pow(c1, d, n)
 K = pow(g, k, a)
-m = long_to_bytes(c2 * inverse(K, a) % a)
+m = c2 * inverse(K, a) % a
 print(m)
 ```
 The output m is an integer representation of the flag string:
