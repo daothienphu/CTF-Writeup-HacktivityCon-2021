@@ -1,60 +1,4 @@
-import socket
-import time
-
-def recvTimeout(the_socket, oneline ,timeout=4):
-    #make socket non blocking
-    the_socket.setblocking(0)
-    
-    #total data partwise in an array
-    total_data=[]
-    data=''
-    
-    #beginning time
-    begin=time.time()
-    while 1:
-        #if you got some data, then break after timeout
-        if total_data and time.time()-begin > timeout:
-            break
-        
-        #if you got no data at all, wait a little longer, twice the timeout
-        elif time.time()-begin > timeout*2:
-            break
-        
-        #recv something
-        try:
-            data = the_socket.recv(8192)
-            if data:
-                data = data.decode()
-                total_data.append(data)
-                #change the beginning time for measurement
-                begin = time.time()
-            else:
-                #sleep for sometime to indicate a gap
-                time.sleep(0.1)
-        except:
-            pass
-    
-    #join all parts to make final string
-    if oneline:
-        return ''.join(total_data)
-    return total_data
-
-def printData(data):
-    for i in data:
-        print(i, end="")
-
-def getWord(data):
-    return data[-1][:-4]
-
-def getTable(data, secondTime=False):
-    if secondTime:
-        data = data[6:-3]
-    else:
-        data = data[3:-3]
-    res = []
-    for line in data:
-        res.append(line[8:-1].split("   "))
-    return res
+from pwn import *
 
 def findWord(word, table):
     for k in range(16):
@@ -219,64 +163,37 @@ def findWord(word, table):
                         i-= 1
                         j+= 1
                     return str(res)
-
                  
-
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#AF_INET for IPv4, SOCK_STREAM for TCP (as opposed to UDP).
-sock.connect(('challenge.ctf.games', 31553))
-
-#receive the initial introduction
-intro = recvTimeout(sock, False)
-printData(intro)
-
-#send play
-sock.send("play\n".encode())
-print("play\n")
-
-
+conn = remote("challenge.ctf.games", 32751)
+intro = conn.recvuntil("> ".encode())
+print(intro.decode())
+conn.send("play".encode())
+print("play")
 count = 0
 while count < 30:
-    time.sleep(5)
-    #first time
-    data = recvTimeout(sock, False)
-    printData(data)
+    for i in range(5):
+        if i == 0:
+            print(conn.recvuntil("30:\n".encode()).decode(),end="")
+            print(conn.recvlineS(),end="")
+            print(conn.recvlineS(),end="")
+            table = []
+            for i in range(16):
+                line = conn.recvlineS()
+                print(line, end="")
+                table += [line.rstrip()[8:].split("   ")]
+            print(conn.recvlineS(),end="")
+            print(conn.recvlineS(),end="")
 
-    data = data[-1].split("\n")
-    if count > 0:
-        table = getTable(data, True)
-    else: 
-        table = getTable(data)
-    word = getWord(data)
-    print(word)
-    #printData(table)
-
-    res = findWord(word, table)
-    #time.sleep(7)
-    if res:
-        sock.send(res.encode())
-    else:
-        sock.send("hahaha".encode())
-    print(res)
-    
-
-    for i in range(4):
-        time.sleep(3)
-        data = recvTimeout(sock, True)
-        print(data, end="")
-
-        word = data[:-4]
-        print(word)
-        res = findWord(word, table)
-        #time.sleep(7)
+        word = conn.recvuntil("> ".encode()).decode()
+        print(word, end="")
+        res = findWord(word[:-4], table)
         if res:
-            sock.send(res.encode())
+            conn.send(res.encode())
+            print(res)
         else:
-            sock.send("hahaha".encode())
-        print(res)
-        
+            print("Failed to find word due to poor backend and I'm very frustrated after 3 hours of just relying on luck.")
+            exit(0)        
     count += 1
 
-#receive flag
-flag = recvTimeout(sock, False)
-printData(flag)
+flag = conn.recvuntil("}".encode())
+print(flag.decode())
