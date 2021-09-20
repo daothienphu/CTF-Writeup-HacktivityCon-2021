@@ -1,4 +1,4 @@
-### These are the writeups for all 15 challenges I have solved in the 2021 H@cktivityCon CTF.  
+### These are the writeups for all 16 challenges I have solved in the 2021 H@cktivityCon CTF.  
 ### Our team Cyberax solved a total of 30 challenges and ranked 43/2527 with 5673 points.
 <p align="center">
   <img src="https://user-images.githubusercontent.com/55624202/133975699-6bbfacad-22b9-4bf9-9010-ccebd89be321.png"/>
@@ -10,6 +10,7 @@ Catergory | Name | Points | Solves
 ---------------- | ----------------- | ----------------- | -----------------
 Warmups          | Bass64            | 50                | 963
 Warmups          | Oddball           | 103               | 189
+Warmups          | Pimple            | 50                | 791
 Warmups          | Read The Rules    | 50                | 1483
 Warmups          | Six Four Over Two | 50                | 1075
 Warmups          | Tsunami           | 50                | 733
