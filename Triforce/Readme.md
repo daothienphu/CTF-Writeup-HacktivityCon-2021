@@ -174,7 +174,7 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-To summarize their encryption process, a flag is divided into 3 parts with length = 16 each. Each part is then used as an IV for the AES (mode CBC) encryption.  
+To summarize their encryption process, the flag is divided into 3 parts with length = 16 each. Each part is then used as an IV for the AES (mode CBC) encryption.  
 We then have the choice to choose any part, then decrypt or encrypt any input.  
 The vulnerability of this implementation is the fact that they use the flag itself for the IV. To understand how we can exploit this, first we have to understand how AES work.    
 The way AES mode CBC encryption work is to divide the user input into blocks (padded in this case).  
