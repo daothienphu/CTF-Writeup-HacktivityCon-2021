@@ -47,7 +47,7 @@ Since they have already given us ```flag```^```key```, we only need to send any 
 Then we XOR them together: ```flag```^```key```^```inp```^```key``` = ```flag```^```inp```.  
 Finally we XOR it with ```inp``` to get the ```flag```: ```flag```^```inp```^```inp``` = ```flag```.
   
-To connect with their container, I used the pwntools library and then which has the handy function ```recvuntil```.
+To connect with their container, I used the pwntools library which has the handy function ```recvuntil```.
 ```
 from pwn import *
 from binascii import unhexlify
