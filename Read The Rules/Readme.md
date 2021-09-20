@@ -11,7 +11,7 @@ Please follow the rules for this CTF!
 - None
 
 ## Summary
-f12, then read the rules.
+The flag is in the rule file in the Source tab of the page.
 
 ## Flag
 ```
